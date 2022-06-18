@@ -50,6 +50,38 @@ const thoughtController = {
                 console.log(err);
                 res.status(400).json(err)
             });
+    },
+    // update a thought
+    updateThought({ body, params }, res) {
+        Thought.findOneAndUpdate({ _id: params.id }, body, { new: true })
+            .then(dbThoughtData => {
+                if(!dbThoughtData) {
+                    res.status(404).json({ message: 'There is no user with that id!' });
+                    return;
+                };
+                
+                res.json(dbThoughtData)
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            })
+    },
+    // delete a thought
+    deleteThought ({ params }, res) {
+        Thought.findOneAndDelete({ _id: params.id })
+            .then(dbThoughtData => {
+                if(!dbThoughtData) {
+                    res.status(404).json({ message: 'There is no user with that id!' });
+                    return;
+                };
+                
+                res.json(dbThoughtData)
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            })
     }
 };
 
