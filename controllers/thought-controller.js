@@ -11,6 +11,23 @@ const thoughtController = {
                 res.status(400).json(err)
             });
     },
+    // get single thought
+    getThoughtById({ params }, res) {
+        Thought.findOne({ _id: params.id })
+            .select('-__v')
+            .then(dbThoughtData => {
+                if(!dbThoughtData) {
+                    res.status(404).json({ message: 'There is no thought with that id!' });
+                    return;
+                }
+
+                res.json(dbThoughtData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err)
+            })
+    },
     // post a thought
     createThought({ body }, res) {
         Thought.create(body)
