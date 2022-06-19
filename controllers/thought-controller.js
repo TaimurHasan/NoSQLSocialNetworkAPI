@@ -56,7 +56,7 @@ const thoughtController = {
         Thought.findOneAndUpdate({ _id: params.id }, body, { new: true })
             .then(dbThoughtData => {
                 if(!dbThoughtData) {
-                    res.status(404).json({ message: 'There is no user with that id!' });
+                    res.status(404).json({ message: 'There is no thought with that id!' });
                     return;
                 };
                 
@@ -72,7 +72,7 @@ const thoughtController = {
         Thought.findOneAndDelete({ _id: params.id })
             .then(dbThoughtData => {
                 if(!dbThoughtData) {
-                    res.status(404).json({ message: 'There is no user with that id!' });
+                    res.status(404).json({ message: 'There is no thought with that id!' });
                     return;
                 };
                 
@@ -82,6 +82,46 @@ const thoughtController = {
                 console.log(err);
                 res.status(400).json(err);
             })
+    },
+    // post a reaction to thought
+    createReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $push: { reactions: body } },
+            { new: true}
+        )
+        .then(dbThoughtData => {
+            if(!dbThoughtData) {
+                res.status(404).json({ message: 'There is no thought with that id!' });
+                return;
+            };
+            
+            res.json(dbThoughtData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        })
+    },
+    // delete a reaction from a thought
+    deleteReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $pull: { reactions: { reactionId: body.reactionId } } },
+            { new: true }
+        )
+        .then(dbThoughtData => {
+            if(!dbThoughtData) {
+                res.status(404).json({ message: 'There is no thought with that id!' });
+                return;
+            };
+            
+            res.json(dbThoughtData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        })
     }
 };
 
