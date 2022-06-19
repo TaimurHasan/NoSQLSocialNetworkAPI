@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 const userController = {
     // get all users
@@ -66,7 +66,16 @@ const userController = {
             })
     },
     // delete a user
-    deleteUser ({ params }, res) {
+    async deleteUser ({ params }, res) {
+        // thought.deleteMany
+        const user = await User.findOne({ _id: params.id })
+
+        const deletePromises = user.thoughts.map(thought => {
+            return Thought.findOneAndDelete( { _id: thought._id })
+        })
+        
+        await Promise.all(deletePromises);
+
         User.findOneAndDelete({ _id: params.id })
             .then(dbUserData => {
                 if(!dbUserData) {
