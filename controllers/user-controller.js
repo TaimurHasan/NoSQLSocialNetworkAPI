@@ -68,14 +68,18 @@ const userController = {
     // delete a user
     async deleteUser ({ params }, res) {
         // thought.deleteMany
+        
         const user = await User.findOne({ _id: params.id })
 
-        const deletePromises = user.thoughts.map(thought => {
-            return Thought.findOneAndDelete( { _id: thought._id })
-        })
-        
-        await Promise.all(deletePromises);
+        if (user) {
+            const deletePromises = user.thoughts.map(thought => {
+                return Thought.findOneAndDelete( { _id: thought._id })
+            })
 
+            await Promise.all(deletePromises);
+        }
+        
+        
         User.findOneAndDelete({ _id: params.id })
             .then(dbUserData => {
                 if(!dbUserData) {
