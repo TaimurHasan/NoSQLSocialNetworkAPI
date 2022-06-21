@@ -41,6 +41,7 @@ To install the application, please follow the steps listed below:
 
 ## Usage
 To use this framework, please test the following API routes and endpoints using your browser or Insomnia (recommended).
+<br/>
 **/api/users**
 - GET all users
 - POST a new user
@@ -50,9 +51,21 @@ To use this framework, please test the following API routes and endpoints using 
 - PUT to update a user by _id
 - DELETE to remove a user by _id
 
+<br/>
+
+![getuser screenshot](./assets/getuser.png)
+
+<br/>
+
 **/api/thoughts**
 - GET all thoughts
 - POST a new thought
+
+<br/>
+
+![getthought screenshot](./assets/gethought.png)
+
+<br/>
 
 **/api/thoughts/:thoughtId**
 - GET a single thought by _id
@@ -63,9 +76,21 @@ To use this framework, please test the following API routes and endpoints using 
 - POST a firend to user friend list
 - DELETE to remove a friend from user friend list
 
+<br/>
+
+![postfriend screenshot](./assets/postfriend.png)
+
+<br/>
+
 **/api/thoughts/:thoughtId/reactions**
 - POST a reaction to a thought
 - DELETE a reaction from a thought
+
+<br/>
+
+![getuser screenshot](./assets/postreaction.png)
+
+<br/>
 
 For more details, please refer to the [walkthrough video]().
 
