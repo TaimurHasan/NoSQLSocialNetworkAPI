@@ -1,6 +1,6 @@
 # NoSQLSocialNetworkAPI
 ## Description
-![NoSQLSocialNetworkAPI screenshot]()
+![NoSQLSocialNetworkAPI screenshot](./assets/headingimage.png)
 
 <br/>
 The NoSQL Social Network API is a back-end framework created using MongoDB and Mongoose, which allows a user to easily develop a social media application with users, friends, thoughts, and reactions. The use of NoSQL (MongoDB) allows for agility in the face of rapid, required changes, which is given some normalization using Mongoose to ensure that data structures and integrity still exist! <br/>
@@ -92,7 +92,7 @@ To use this framework, please test the following API routes and endpoints using 
 
 <br/>
 
-For more details, please refer to the [walkthrough video]().
+For more details, please refer to the [walkthrough video](https://drive.google.com/file/d/1bqiapqHw9yDlO84SPuwPotnY13zmf-oj/view).
 
 
 <a name="license"></a>
